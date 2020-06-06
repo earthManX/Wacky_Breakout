@@ -13,11 +13,17 @@ public class PaddleBehaviour : MonoBehaviour
     float screenRight;
 	float boolTolerance = 0.04f;
 	const float BounceAngleHalfRange = 60 * Mathf.PI / 180;
-    // Start is called before the first frame update
+    
+    bool frozenPaddle = false ;
+    Timer frozenTimer ;  
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
+        frozenTimer = gameObject.AddComponent<Timer>();
+
+        EventManager.AddPickupEffectListener(frozePaddleBehavior);
+        
         Vector2 boxMeasurements = box.size;
         halfWidthCollider = boxMeasurements.x * transform.localScale.x * 0.5f ; 
 		halfHeightCollider = boxMeasurements.y * transform.localScale.y * 0.5f ;
@@ -25,17 +31,26 @@ public class PaddleBehaviour : MonoBehaviour
         screenRight = ScreenUtils.ScreenRight;
     }
 
+    void Update(){
+        if( frozenPaddle){
+            if( frozenTimer.Finished ){
+                frozenPaddle = false ; 
+            }
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         float horizontalInput = Input.GetAxis("Horizontal");
-		
+		if( !frozenPaddle ){
 		Vector2 move = new Vector2(horizontalInput , 0 );
 		Vector2 position = rigidBody.position;
 		
 		position = position + ConfigurationUtils.PaddleMoveUnitsPerSecond * move * Time.deltaTime;
 		position.x = CalculatedClampedX(position.x);
         rigidBody.MovePosition(position);
+        }
     }
 
     private float CalculatedClampedX( float xPosition){
@@ -86,4 +101,16 @@ public class PaddleBehaviour : MonoBehaviour
 		}
 		return false;
 	}
+
+    public void frozePaddleBehavior( float duration){
+        if(frozenTimer.Running){
+            frozenTimer.AddDuration(duration);
+        }else{
+            frozenTimer.Duration = duration ; 
+            frozenTimer.Run();
+        }
+        frozenPaddle = true;
+        Debug.Log( " froze paddle listener activated : " + frozenTimer.totalSeconds);
+        
+    }
 }

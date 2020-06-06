@@ -15,15 +15,18 @@ public class ConfigurationData
 
     // configuration data
     static float paddleMoveUnitsPerSecond = 10;
-    static float ballImpulseForce = 10 ;
-    static float ballAliveTime = 5 ; 
-    static int minSpawnTime = 5 ;
-    static int maxSpawnTime = 10;
+    static float ballImpulseForce = 8 ;
+    static float ballAliveTime = 10 ; 
+    static int minSpawnTime = 10 ;
+    static int maxSpawnTime = 15 ;
     static int stdBlockPoints = 1 ; 
     static int bonusBlockPoints = 3 ; 
     static int pickupBlockPoints = 2 ;
     static float[] blockProbabilities= {0.25f , 0.25f, 0.25f, 0.25f};
     static int maxBalls = 10;
+    static float freezerEffectDuration = 2f;
+    static float speedupEffectDuration = 2f;
+    static float speedupFactor = 1.5f ;
     #endregion
 
     #region Properties
@@ -75,6 +78,15 @@ public class ConfigurationData
     }
     public int MaxBalls{
         get{return maxBalls; }
+    }
+    public float FreezerEffectDuration{
+        get { return freezerEffectDuration; }
+    }
+    public float SpeedupEffectDuration{
+        get{ return speedupEffectDuration; }
+    }
+    public float SpeedupFactor{
+        get{ return speedupFactor ;}
     }
 
     #endregion
@@ -130,5 +142,10 @@ public class ConfigurationData
                 }
             }
         maxBalls = int.Parse(values[12]);
+        freezerEffectDuration = int.Parse(values[13]);
+        speedupEffectDuration = float.Parse(values[14]);
+        speedupFactor = float.Parse(values[15]);
 	}
+
+        
 }

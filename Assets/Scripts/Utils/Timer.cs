@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
 	#region Fields
 	
 	// timer duration
-	float totalSeconds = 0;
+	public float totalSeconds = 0;
 	
 	// timer execution
 	float elapsedSeconds = 0;
@@ -38,7 +38,9 @@ public class Timer : MonoBehaviour
 			}
 		}
 	}
-	
+	public float SecondsLeft{
+		get{ return totalSeconds - elapsedSeconds ;}
+	}
 	/// <summary>
 	/// Gets whether or not the timer has finished running
 	/// This property returns false if the timer has never been started
@@ -96,5 +98,11 @@ public class Timer : MonoBehaviour
 		}
 	}
 	
+	public void AddDuration( float time ){
+		if( running == true ){
+			totalSeconds = totalSeconds + time; 
+		}
+	}
+
 	#endregion
 }

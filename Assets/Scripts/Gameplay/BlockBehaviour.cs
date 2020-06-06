@@ -13,7 +13,7 @@ public class BlockBehaviour : MonoBehaviour
         EventManager.AddInvoker(this);
     }
 
-	void OnCollisionEnter2D( Collision2D coll){
+	virtual protected void OnCollisionEnter2D( Collision2D coll){
 		if( coll.gameObject.CompareTag("Ball")){
             addPointsEvent.Invoke(blockPoints);
             Debug.Log("Parent OnCollision method accessed");

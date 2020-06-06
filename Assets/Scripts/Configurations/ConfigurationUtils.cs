@@ -44,6 +44,15 @@ public static class ConfigurationUtils
     public static int MaxBalls{
         get{ return configurationData.MaxBalls; }
     }
+    public static float FreezerEffectDuration{
+        get{ return configurationData.FreezerEffectDuration ; }
+    }
+    public static float SpeedupEffectDuration{
+        get{ return configurationData.SpeedupEffectDuration ;}
+    }
+    public static float SpeedupFactor{
+        get{ return configurationData.SpeedupFactor; }
+    }
     #endregion
     
     /// <summary>
