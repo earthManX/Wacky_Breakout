@@ -6,5 +6,6 @@ public enum Menus
 {
     Main ,
     Help,
-    Pause
+    Pause,
+    GameOver
 }

@@ -16,6 +16,9 @@ public static class MenuManager
                 break;
             case Menus.Help:
                 break;
+            case Menus.GameOver:
+                Object.Instantiate(Resources.Load("GameOver"));
+                break;
             default:
                 break;
 

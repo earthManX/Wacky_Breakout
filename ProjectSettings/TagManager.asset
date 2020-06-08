@@ -8,6 +8,9 @@ TagManager:
   - Block
   - ScoreText
   - BallsLeft
+  - PlayerScore
+  - HighScore
+  - HUD
   layers:
   - Default
   - TransparentFX
