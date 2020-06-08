@@ -12,4 +12,7 @@ public class MainMenu : MonoBehaviour
     public void QuitButtonClick(){
         Application.Quit();
     }
+    public void HelpButtonClick(){
+        MenuManager.GoToMenu(Menus.Help);
+    }
 }

@@ -15,6 +15,7 @@ public static class MenuManager
                 Object.Instantiate(Resources.Load("PauseMenu"));
                 break;
             case Menus.Help:
+                SceneManager.LoadScene("HelpMenu");
                 break;
             case Menus.GameOver:
                 Object.Instantiate(Resources.Load("GameOver"));
